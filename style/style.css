@@ -6,6 +6,10 @@ body {
   background: no-repeat;
 }
 
+form {
+  display: inline;
+}
+
 html {
   min-width: 750px;
 }
