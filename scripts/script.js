@@ -6,12 +6,14 @@ async function loadBreedsAPI() {
   await fetch(url)
     .then((response) => response.json())
     .then((breeds) => {
-      Object.keys(breeds.message).forEach((breed)=>{
-        let out = `<option value="${breed}">${breed}</option>`;
-        console.log(out);
+      let out = [];
+      Object.keys(breeds.message).forEach((breed) => {
+        document.querySelector(
+          "#breeds"
+        ).innerHTML += `<option value="${breed}">${breed}</option>`;
       });
     });
-  };
+}
 
 /////////////////////////////////////////////////////
 // load the doggo API
