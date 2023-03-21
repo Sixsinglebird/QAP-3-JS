@@ -5,10 +5,14 @@ async function loadBreedsAPI() {
   let url = "https://dog.ceo/api/breeds/list/all";
   await fetch(url)
     .then((response) => response.json())
-    .then((response2) => console.log(response2.message));
-  // .then((breeds) => {
-  //   breeds.forEach((breed) => console.log(breed));
-  // });
+    .then((breeds) => {
+      let out = [];
+      Object.keys(breeds.message).forEach((breed) => {
+        document.querySelector(
+          "#breeds"
+        ).innerHTML += `<option value="${breed}">${breed}</option>`;
+      });
+    });
 }
 
 /////////////////////////////////////////////////////
