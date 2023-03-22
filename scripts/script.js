@@ -16,16 +16,25 @@ async function loadBreedsAPI() {
 }
 
 const getDoggos = () => {
-  let url = `https://dog.ceo/api/breed/${document.querySelector("#breeds").value}/images/random/${document.querySelector("#number").value}`
+  let num = document.querySelector("#number").value;
+  if (num >= 50) {
+    alert(
+      `${num} is an invalid number This webpage is limited to display 50 images; Displaying 50 Images`
+    );
+  }
+  let url = `https://dog.ceo/api/breed/${
+    document.querySelector("#breeds").value
+  }/images/random/${num}`;
   let out = [];
   fetch(url)
-  .then((response)=> response.json())
-  .then((response)=>{
-    response.message.forEach((image)=>{
-      out.push(`<img src="${image}">`)
-    }); 
-    document.querySelector("#display").innerHTML = out;
-  })
+    .then((response) => response.json())
+    .then((response) => {
+      response.message.forEach((image) => {
+        out.push(`<img class="doggo" src="${image}">`);
+      });
+      document.querySelector("#display").innerHTML = out;
+    })
+    .catch((errors) => console.log(errors));
 };
 
 /////////////////////////////////////////////////////
@@ -35,4 +44,4 @@ window.onload = () => {
   // loadImagesAPI();
 };
 
-document.querySelector("#search").addEventListener("click",getDoggos);
+document.querySelector("#search").addEventListener("click", getDoggos);
