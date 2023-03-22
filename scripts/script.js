@@ -15,9 +15,24 @@ async function loadBreedsAPI() {
     });
 }
 
+const getDoggos = () => {
+  let url = `https://dog.ceo/api/breed/${document.querySelector("#breeds").value}/images/random/${document.querySelector("#number").value}`
+  let out = [];
+  fetch(url)
+  .then((response)=> response.json())
+  .then((response)=>{
+    response.message.forEach((image)=>{
+      out.push(`<img src="${image}">`)
+    }); 
+    document.querySelector("#display").innerHTML = out;
+  })
+};
+
 /////////////////////////////////////////////////////
 // load the doggo API
 window.onload = () => {
   loadBreedsAPI();
   // loadImagesAPI();
 };
+
+document.querySelector("#search").addEventListener("click",getDoggos);
