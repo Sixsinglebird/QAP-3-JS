@@ -15,9 +15,17 @@ async function loadBreedsAPI() {
     });
 }
 
+const getDoggos = () => {
+  let breed = document.querySelector("#breeds").value;
+  alert(breed);
+  // let url = 
+};
+
 /////////////////////////////////////////////////////
 // load the doggo API
 window.onload = () => {
   loadBreedsAPI();
   // loadImagesAPI();
 };
+
+document.querySelector("#search").addEventListener("click",getDoggos);
